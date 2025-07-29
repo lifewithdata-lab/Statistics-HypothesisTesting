@@ -1,0 +1,131 @@
+
+html {scroll-behavior: smooth;}
+
+body {background-color: rgba(87, 171, 245, 0.2);
+    font-size: 1em;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif}
+
+article {
+    max-width: 90%;
+    width: 900px;
+    margin: auto;
+    background-color: white;
+    padding: 5%;
+    box-sizing:border-box;
+    overflow-x: visible;
+    overflow-y: hidden;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+p > img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+article h1 {
+  font-size: 2rem;   /* or 32px */
+  text-align: left;
+  text-transform: uppercase;
+}
+
+article h2 {
+  font-size: 1.5rem; /* or 24px */
+}
+
+h1, h2 {
+background-color: rgba(87, 171, 245, 0.2);
+color:rgb(27, 24, 104);
+padding: 2%;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 20px;
+  }
+  .menu {
+    flex-direction: column;
+  }
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  display: block;
+  background-color: #a3f7f498;
+  color:grey;
+  font-family: Arial;
+  font-weight:bold;
+  padding: 2%;
+  border: 2px solid white;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+ol li {
+  line-height: 2em;
+}
+
+h3 {
+  padding: 0;
+  margin: 1em 0; /* or adjust as needed */
+}
+
+section.python p:lang(en),
+section.r p:lang(en) {
+  font-family: Courier, monospace;
+}
+
+p.code {
+  background-color: #f5f5f5; /* light gray */
+  padding: 0.5em;
+  border-radius: 4px;
+}
+
+img {
+  max-width: 90%;
+  height: auto;
+  display: block;
+}
+
+
+/* Fix block LaTeX inside <li> so it doesn't overflow */
+
+li mjx-container.MathJax_Display {
+  display: block;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Force MathJax inner content to behave */
+li mjx-container.MathJax_Display mjx-math {
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Ensure inline LaTeX remains inline */
+li mjx-container:not(.MathJax_Display) {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  word-break: break-word;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+
+

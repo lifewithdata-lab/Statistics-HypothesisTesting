@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics-Estimation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+    window.MathJax = {
+        tex: {
+            packages: ['base', 'ams']
+        }
+        };
+    </script>
+    <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <script>
+    window.MathJax && MathJax.typeset();
+    </script>
+
+
+</head>
+<body>
+    <article>
+        <h1>
+            <strong>Chapter 8</strong><br>
+            仮説検定（\( p \) 値、2種類の過誤、母平均・母比率・母分散の検定[1標本、2標本]
+        </h1>
+
+        <h2>
+            <strong>【概要】</strong>       
+        </h2>
+        <p><strong>仮説検定</strong>とは、母集団の特性に関する仮説を立て、標本データに基づいてその仮説が妥当かどうかを検証する方法。
+            <ul>
+                <li><strong>帰無仮説（\( H_0 \) ）</strong>初めに仮定する主張（例：「差がない」）</li>
+                <li><strong>対立仮説（\( H_1 \)）</strong>帰無仮説に対する反対の主張（例：「差がある」）</li>
+            </ul>
+        </p>
+         <p><strong>\( p \) 値</strong>とは観測された統計量以上の差が偶然に起こる確率。
+            <ul>
+                <li>\( p \) 値が<strong>有意水準（例：5%）未満 </strong> → 帰無仮説を棄却</li>
+                <li>\( p \) 値が<strong>有意水準以上</strong> → 帰無仮説を採択</li>
+            </ul>
+        </p>
+        <p><strong>2種類の過誤</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0">
+          <thead>
+            <tr>
+                 <th>種類</th>
+                 <th>内容</th>
+                 <th>リスク</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>第Ⅰ種の過誤</td>
+                    <td>実際には正しい \( H_0 \) を棄却</td>
+                    <td>\( \alpha \)（有意水準）</td>
+                </tr>
+                <tr>
+                    <td>第Ⅱ種の過誤</td>
+                    <td>実際には \( H_0 \) が誤っているのに採択</td>
+                    <td>\( \beta \)（検出力に関連）</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>母平均・母比率・母分散の検定[1標本、2標本]</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>検定の対象</th>
+                    <th>1標本</th>
+                    <th>2標本</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>母平均</td>
+                    <td>\( t \)検定（\( t \) 分布）</td>
+                    <td>\( t \) 検定（等分散・異分散）</td>
+                </tr>
+                <tr>
+                    <td>母比率</td>
+                    <td>正規近似による \( z \) 検定</td>
+                    <td>\( z \) 検定</td>
+                </tr>
+                <tr>
+                    <td>母分散</td>
+                    <td>\( \chi^2 \) 検定</td>
+                    <td>\( F \) 検定（分散比）</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2><strong>【例題】</strong></h2>
+
+        <h3><strong>例題1: </strong>母平均の検定（1標本・\( t \) 検定）</h3>
+        <>ある工場では、製品の平均長さは「150mm」であるとされている。最近の10個の製品の長さの平均は147.8mm、標準偏差は4.2mmであった。この結果から、「平均が150mmである」という仮説を5%の有意水準で検定するときの判断として正しいものを選べ。<br><br>
+        選択肢：<br><br>
+        A. 帰無仮説を棄却できる<br>
+        B. 帰無仮説を棄却できない<br>
+        C. 対立仮説は「平均が 150mm より大きい」である<br>
+        D. \( p \) 値は 0.01 未満である<br>
+        </p>
+
+
+
+
+
+        <h3><strong>例題2: </strong>母比率の区間推定（母分散既知）</h3>
+        <p>日本人男性100人の身長を調べたら平均が172 cm、母分散はとする。このとき母平均 \(\mu\) の95%信頼区間を求めよ。</p>
+
+        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <p>標本サイズが15のとき、標本分散が25だった。母分散の95%信頼区間を求めよ。（自由度14の\(\chi^2\) 分布：
+        \(\chi^2_{(0.025)} = 5.629, \ \chi^2_{(0.975)} = 26.119\)</p>
+
+        <h2><strong>【例題の解説】</strong></h2>
+        <h3><strong>例題1: </strong>母平均の検定（1標本・\( t \) 検定）</h3>
+        <ol>
+            <li>\( H_0 \)：\( \mu = 150 \), \( H_1 \)：\( \mu \ne 150 \)
+            </li>
+            <li>検定統計量：<br>
+                \[
+                t = \frac{147.8 - 150}{4.2 / \sqrt{10}} \approx -1.67
+                \]
+            </li>
+            <li>自由度9、5%水準の両側検定 → 臨界値 ±2.262</li>
+            <li>\( |t| &lt; 2.262 \) → 帰無仮説は棄却できない
+            </li>
+            <li><strong>正解：B</strong></li>
+        </ol>
+
+        <h3><strong>例題2: </strong>母比率の区間推定</h3>
+        <ol>
+            <li>標本平均：\( \bar{x} = 172 \)</li>
+            <li>標準偏差：\( \sigma = 5.5 \)、標本数 \( n = 10 \)</li>
+            <li>標準誤差：
+                \[
+                \sigma_{\bar{x}} = \frac{5.5}{\sqrt{100}} = 0.55
+                \]
+            </li>
+            <li>95%信頼区間の\(Z\)値は1.96。</li>
+            <li>95%信頼区間：
+                \[
+                172 \pm 1.96 \times 0.55 = [170.92,\ 173.08]
+                \]
+            </li>
+        </ol>
+        
+        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <ol>
+            <li>標本サイズ \(n = 15\)</li>
+            <li>標本分散\( s^2 = 25 \)</li>
+            <li>自由度\( \mathrm{df} = 14 \)</li>
+            <li>信頼水準：95%</li>
+            <li>\(\chi^2_{(0.025)} = 5.629, \ \chi^2_{(0.975)} = 26.119\)</li>
+            <li>母分散の区間推定式
+                \[
+                \left( \frac{(n - 1) s^2}{\chi^2_{0.975}},\ \frac{(n - 1) s^2}{\chi^2_{0.025}} \right)
+                = \left( \frac{14 \times 25}{26.119},\ \frac{14 \times 25}{5.629} \right)
+                = (13.39,\ 62.20)
+                \]
+            </li>
+        </ol>
+
+        <section class="python">
+        <h2><strong>【pythonでの解説】</strong></h2>
+         <h3><strong>例題1: </strong>母平均の検定（1標本・\( t \) 検定）</h3>
+        <p><strong>コード（statsmodels使用）: </strong></p>
+        <p class="code">import scipy.stats as stats<br>
+            import numpy as np<br><br>
+            
+            x_bar = 147.8<br>
+            mu = 150<br>
+            s = 4.2<br>
+            n = 10<br><br>
+            
+            t_stat = (x_bar - mu) / (s / np.sqrt(n))<br>
+            p_value = 2 * stats.t.sf(np.abs(t_stat), df=n-1)<br><br>
+            
+            print("t値:", round(t_stat, 2))<br>
+            print("p値:", round(p_value, 3))
+        </p>
+        <p><strong>出力：</strong><br>
+            t値: -1.67 <br>
+            p値: 0.131
+        </p>
+
+
+
+        <h3><strong>例題2: </strong>母比率の区間推定</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">import scipy.stats as stats<br>
+           import numpy as np<br><br>
+           mean = 172<br>
+           sigma = 5.5<br>
+           n = 100<br>
+           se = sigma / np.sqrt(n)<br>
+           z = 1.96<br><br>
+           lower = mean - z * se<br>
+           upper = mean + z * se<br>
+           print((lower, upper))<br>
+        </p>
+        
+        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">from scipy.stats import chi2<br>
+            n = 15<br>
+            s2 = 25<br>
+            df = n - 1<br><br>
+            chi2_lower = chi2.ppf(0.025, df)<br>
+            chi2_upper = chi2.ppf(0.975, df)<br><br>
+            lower = (df * s2) / chi2_upper<br>
+            upper = (df * s2) / chi2_lower<br><br>
+            print(round(lower, 2), round(upper, 2))<br>
+        </p>
+        <p><strong>出力: </strong></p>
+        <p>13.39 62.20</p>
+
+        </section>
+
+        <section class="r">
+        <h2><strong>【Rでの解説】</strong></h2>
+        <h3><strong>例題1: </strong>母平均の検定（1標本・\( t \) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+            x_bar <- 147.8<br>
+            mu <- 150<br>
+            s <- 4.2<br>
+            n <- 10<br><br>
+            
+            t_stat <- (x_bar - mu) / (s / sqrt(n))<br>
+            p_val <- 2 * pt(abs(t_stat), df = n - 1, lower.tail = FALSE)<br><br>
+            
+            cat("t値:", round(t_stat, 2), "\n")<br>
+            cat("p値:", round(p_val, 3), "\n")
+        </p>
+        <p><strong>出力：</strong><br>
+            t値: \( -1.67 \)<br>
+            p値: \( 0.131 \)
+        </p>
+
+
+        <h3><strong>例題2: </strong>母比率の区間推定</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">mean <- 172<br>
+            sigma <- 5.5<br>
+            n <- 100<br>
+            se <- sigma / sqrt(n)<br>
+            z <- 1.96<br><br>
+            lower <- mean - z * se<br>
+            upper <- mean + z * se<br>
+            c(lower, upper)<br>
+        </p>
+        <p><strong>出力: </strong></p>
+        <p>[1] 170.92 173.08</p>
+
+        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">n <- 15<br>
+            s2 <- 25<br>
+            df <- n - 1<br><br>
+            chi2_lower <- qchisq(0.025, df)<br>
+            chi2_upper <- qchisq(0.975, df)<br><br>
+            lower <- (df * s2) / chi2_upper<br>
+            upper <- (df * s2) / chi2_lower<br>
+            round(c(lower, upper), 2)<br>
+        </p>
+        <p><strong>出力: </strong></p>
+        <p>[1] 13.39 62.20</p>
+    </article>
+</body>
+</html>

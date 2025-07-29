@@ -116,7 +116,7 @@
             A. \( z \)値 ≈ 1.26 → 棄却できない<br>
             B. \( z \)値 ≈ 2.26 → 棄却できる<br>
             C. \( z \)値 ≈ -1.26 → 棄却できない<br>
-            D. \( z \)値 ≈ -2.26 → 棄却できる
+            D. \( z \)値 ≈ -2.26 → 棄却できる<br><br>
         </p>
 
 
@@ -135,27 +135,21 @@
                 \]
             </li>
             <li>自由度9、5%水準の両側検定 → 臨界値 ±2.262</li>
-            <li>\( |t| &lt; 2.262 \) → 帰無仮説は棄却できない
-            </li>
-            <li><strong>正解：B</strong></li>
-        </ol>
+            <li>\( |t| &lt; 2.262 \) → 帰無仮説は棄却できない → <strong>正解：B</strong></li>
+        </ol><br>
 
-        <h3><strong>例題2: </strong>母比率の区間推定</h3>
+        <h3><strong>例題2: </strong>母比率の検定（1標本・\( z \) 検定）</h3>
         <ol>
-            <li>標本平均：\( \bar{x} = 172 \)</li>
-            <li>標準偏差：\( \sigma = 5.5 \)、標本数 \( n = 10 \)</li>
-            <li>標準誤差：
-                \[
-                \sigma_{\bar{x}} = \frac{5.5}{\sqrt{100}} = 0.55
-                \]
+            <li>母比率 \( p_0 = 0.20 \)、標本サイズ \( n = 200 \)、観測値 \( x = 54 \)<br>
+                標本比率 \( \hat{p} = \frac{54}{200} = 0.27 \)</li>
+            <li> 検定統計量（z値）は次の式で求めます：<br>
+               \[
+               z = \frac{\hat{p} - p_0}{\sqrt{p_0(1 - p_0) / n}} = \frac{0.27 - 0.20}{\sqrt{0.20 \cdot 0.80 / 200}} \approx 2.63
+               \]
             </li>
-            <li>95%信頼区間の\(Z\)値は1.96。</li>
-            <li>95%信頼区間：
-                \[
-                172 \pm 1.96 \times 0.55 = [170.92,\ 173.08]
-                \]
-            </li>
-        </ol>
+            <li>両側検定で \( z = 2.63 \gt 1.96 \) → 帰無仮説を棄却できる → <strong>正解：B</strong></li>
+        </ol><br>
+
         
         <h3><strong>例題3: </strong>母分散の区間推定</h3>
         <ol>
@@ -194,24 +188,30 @@
         <p><strong>出力：</strong><br>
             t値: -1.67 <br>
             p値: 0.131
-        </p>
+        </p><br>
 
-
-
-        <h3><strong>例題2: </strong>母比率の区間推定</h3>
+        <h3><strong>例題2: </strong>母比率の検定（1標本・\( z \) 検定）</h3>
         <p><strong>コード:</strong></p>
         <p class="code">import scipy.stats as stats<br>
            import numpy as np<br><br>
-           mean = 172<br>
-           sigma = 5.5<br>
-           n = 100<br>
-           se = sigma / np.sqrt(n)<br>
-           z = 1.96<br><br>
-           lower = mean - z * se<br>
-           upper = mean + z * se<br>
-           print((lower, upper))<br>
+           p0 = 0.20<br>
+           n = 200<br>
+           x = 54<br>
+           phat = x / n<br><br>
+           
+           # z値の計算<br>
+           z = (phat - p0) / np.sqrt(p0 * (1 - p0) / n)<br>
+           p_value = 2 * stats.norm.sf(abs(z))<br><br>
+           
+           print("z値:", round(z, 2))<br>
+           print("p値:", round(p_value, 4))
         </p>
         
+        <p><strong>出力：</strong><br>
+            z値: 2.63<br>
+            p値: 0.0086
+        </p><br>
+
         <h3><strong>例題3: </strong>母分散の区間推定</h3>
         <p><strong>コード:</strong></p>
         <p class="code">from scipy.stats import chi2<br>
@@ -225,7 +225,7 @@
             print(round(lower, 2), round(upper, 2))<br>
         </p>
         <p><strong>出力: </strong></p>
-        <p>13.39 62.20</p>
+        <p>13.39 62.20</p><br>
 
         </section>
 
@@ -246,24 +246,29 @@
             cat("p値:", round(p_val, 3), "\n")
         </p>
         <p><strong>出力：</strong><br>
-            t値: \( -1.67 \)<br>
-            p値: \( 0.131 \)
-        </p>
+            t値: -1.67<br>
+            p値: 0.131
+        </p><br>
 
 
-        <h3><strong>例題2: </strong>母比率の区間推定</h3>
+        <h3><strong>例題2: </strong>母比率の検定（1標本・\( z \) 検定）</h3>
         <p><strong>コード:</strong></p>
-        <p class="code">mean <- 172<br>
-            sigma <- 5.5<br>
-            n <- 100<br>
-            se <- sigma / sqrt(n)<br>
-            z <- 1.96<br><br>
-            lower <- mean - z * se<br>
-            upper <- mean + z * se<br>
-            c(lower, upper)<br>
+        <p class="code">p0 <- 0.20<br>
+            n <- 200<br>
+            x <- 54<br>
+            phat <- x / n<br><br>
+            
+            z <- (phat - p0) / sqrt(p0 * (1 - p0) / n)<br>
+            p_value <- 2 * pnorm(abs(z), lower.tail = FALSE)<br><br>
+            
+            cat("z値:", round(z, 2), "\n")<br>
+            cat("p値:", round(p_value, 4), "\n")
         </p>
-        <p><strong>出力: </strong></p>
-        <p>[1] 170.92 173.08</p>
+        <p><strong>出力：</strong><br>
+            z値: 2.63<br>
+            p値: 0.0086
+        </p><br>
+
 
         <h3><strong>例題3: </strong>母分散の区間推定</h3>
         <p><strong>コード:</strong></p>

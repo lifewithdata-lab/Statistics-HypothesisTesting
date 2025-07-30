@@ -120,9 +120,43 @@
         </p>
 
 
-        <h3><strong>例題3: </strong>母分散の区間推定</h3>
-        <p>標本サイズが15のとき、標本分散が25だった。母分散の95%信頼区間を求めよ。（自由度14の\(\chi^2\) 分布：
-        \(\chi^2_{(0.025)} = 5.629, \ \chi^2_{(0.975)} = 26.119\)</p>
+        <h3><strong>例題3: </strong>母分散の検定（1標本・\( \chi^2 \)検定）</h3>
+        <p>ある製品の長さの分散は既知で 1.5 であるとされている。<br>
+            12個の製品を測定したところ、分散は 2.1 であった。<br>
+            このとき、「分散は 1.5 である」という仮説を 5%水準で検定するときの検定統計量はどれか。<br><br>
+            A. \( \chi^2 = 11 \)<br>
+            B. \( \chi^2 = 15.4 \)<br>
+            C. \( \chi^2 = 17.1 \)<br>
+            D. \( \chi^2 = 22.0 \)<br><br>
+        </p>
+
+        <h3><strong>例題4: </strong>母平均の検定（2標本・\( t \) 検定）</h3>
+        <p>A社とB社の製品の寿命（時間）に差があるかを検定する。A社10個の製品の平均寿命は50時間、標準偏差は5時間。B社8個の製品の平均寿命は55時間、標準偏差は6時間であった。等分散が仮定される場合、有意水準5%で「平均寿命に差があるか」を検定せよ。<br><br>
+            A. \( t \)  ≈ -1.93 → 差はない<br>
+            B. \( t \)  ≈ -1.93 → 差がある<br>
+            C. \( t \)  ≈ -2.50 → 差がある<br>
+            D. \( t \)  ≈ 1.93 → 差はない<br><br>
+        </p>
+
+        <h3><strong>例題5: </strong>母比率の検定（2標本・\( z \) 検定）</h3>
+        <p>新薬Aを投与された100人中30人が回復し、旧薬Bを投与された120人中24人が回復した。
+        このとき、両群の回復率に差があるかどうかを5%水準で検定せよ。<br><br>
+        A. \( z \) ≈ 0.91 → 差はない<br>
+        B. \( z \) ≈ 1.82 → 差がある<br>
+        C. \( z \) ≈ 1.25 → 差はない<br>
+        D. \( z \) ≈ 2.21 → 差がある<br><br>
+        </p>
+
+        <h3><strong>例題6: </strong>母分散の検定（2標本・\( F\) 検定）</h3>
+        <p>A社：標本数10、標準偏差4<br>
+            B社：標本数12、標準偏差2<br>
+            分散に差があるかを5%水準で検定<br><br>
+
+            A. F ≈ 4.00 → 差がある<br>
+            B. F ≈ 4.00 → 差はない<br>
+            C. F ≈ 2.25 → 差がある<br>
+            D. F ≈ 0.50 → 差がある<br><br>
+        </p>
 
         <h2><strong>【例題の解説】</strong></h2>
         <h3><strong>例題1: </strong>母平均の検定（1標本・\( t \) 検定）</h3>
@@ -150,22 +184,122 @@
             <li>両側検定で \( z = 2.63 \gt 1.96 \) → 帰無仮説を棄却できる → <strong>正解：B</strong></li>
         </ol><br>
 
-        
-        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <h3><strong>例題3: </strong>母分散の検定（1標本・\( \chi^2 \)検定）</h3>
+       <ol>
+        <li>帰無仮説 \( H_0 \)：\( \sigma^2 = 1.5 \)</li>
+        <li>標本分散：\( s^2 = 2.1 \)、標本サイズ：\( n = 12 \) → 自由度 \( = 11 \)</li>
+        <li>検定統計量（カイ二乗値）：<br>
+            \[
+             \chi^2 = \frac{(n - 1) \cdot s^2}{\sigma_0^2} = \frac{11 \cdot 2.1}{1.5} \approx 15.4
+             \]
+             <br>
+              → <strong>正解：B</strong></li>
+        </ol><br>
+
+        <h3><strong>例題4: </strong>母平均の検定（2標本・\( t \) 検定）</h3>
         <ol>
-            <li>標本サイズ \(n = 15\)</li>
-            <li>標本分散\( s^2 = 25 \)</li>
-            <li>自由度\( \mathrm{df} = 14 \)</li>
-            <li>信頼水準：95%</li>
-            <li>\(\chi^2_{(0.025)} = 5.629, \ \chi^2_{(0.975)} = 26.119\)</li>
-            <li>母分散の区間推定式
+            <li>
+                仮説の設定：<br>
+                \( H_0: \mu_1 = \mu_2 \)（平均に差はない）<br>
+                \( H_1: \mu_1 \ne \mu_2 \)（平均に差がある）→ 両側検定
+            </li>
+        
+            <li>
+                与えられた値：<br>
+                \( \bar{x}_1 = 50 \), \( s_1 = 5 \), \( n_1 = 10 \)<br>
+                \( \bar{x}_2 = 55 \), \( s_2 = 6 \), \( n_2 = 8 \)
+            </li>
+        
+            <li>
+                共通分散の計算：<br>
                 \[
-                \left( \frac{(n - 1) s^2}{\chi^2_{0.975}},\ \frac{(n - 1) s^2}{\chi^2_{0.025}} \right)
-                = \left( \frac{14 \times 25}{26.119},\ \frac{14 \times 25}{5.629} \right)
-                = (13.39,\ 62.20)
+                s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}
+                = \frac{9 \cdot 25 + 7 \cdot 36}{16} = \frac{225 + 252}{16} = 29.81
                 \]
             </li>
-        </ol>
+        
+            <li>
+                t値の計算：<br>
+                \[
+                t = \frac{50 - 55}{\sqrt{29.81 \left( \frac{1}{10} + \frac{1}{8} \right)}}
+                = \frac{-5}{\sqrt{29.81 \cdot 0.225}} = \frac{-5}{\sqrt{6.707}} \approx \frac{-5}{2.59} \approx -1.93
+                \]
+            </li>
+        
+            <li>
+                自由度：\( n_1 + n_2 - 2 = 16 \)<br>
+                両側5%検定の臨界値：\( \pm 2.120 \)
+            </li>
+        
+            <li>
+                \(|t| = 1.93 < 2.120\) よって、帰無仮説は棄却できない
+                → 差はない → <strong>正解：A</strong>
+            </li>
+        </ol><br>
+
+        <h3><strong>例題5: </strong>母比率の検定（2標本・\( z \) 検定）</h3>
+        <ol>
+            <li>
+                標本比率の計算：<br>
+                \( p_1 = \frac{30}{100} = 0.3 \)、\( p_2 = \frac{24}{120} = 0.2 \)
+            </li>
+        
+            <li>
+                合併比率（プールされた比率）：<br>
+                \[
+                p = \frac{30 + 24}{100 + 120} = \frac{54}{220} = 0.245
+                \]
+            </li>
+        
+            <li>
+                標準誤差の計算：<br>
+                \[
+                SE = \sqrt{0.245 \cdot (1 - 0.245) \cdot \left( \frac{1}{100} + \frac{1}{120} \right)} \approx 0.081
+                \]
+            </li>
+        
+            <li>
+                z値の計算：<br>
+                \[
+                z = \frac{0.3 - 0.2}{0.081} \approx 1.23
+                \]
+            </li>
+        
+            <li>
+                両側検定・有意水準5% → 臨界値：±1.96
+            </li>
+        
+            <li>
+                \(|z| = 1.23 < 1.96\) よって、帰無仮説を棄却しない（差なし）
+            → <strong>正解：C</strong></li>
+        </ol><br>
+
+        <h3><strong>例題6: </strong>母分散の検定（2標本・\( F\) 検定）</h3>
+        <ol>
+            <li>
+                検定統計量の計算：<br>
+                \[
+                F = \frac{s_1^2}{s_2^2} = \frac{16}{4} = 4.00
+                \]
+            </li>
+        
+            <li>
+                自由度：<br>
+                \( \text{df}_1 = 9 \), \( \text{df}_2 = 11 \)
+            </li>
+        
+            <li>
+                両側5%水準での臨界値：<br>
+                上側2.5%：\( F(9,11) \approx 3.59 \)<br>
+                下側2.5%：\( 1 / 3.59 \approx 0.279 \)
+            </li>
+        
+            <li>
+                判定条件：<br>
+                \( F = 4.00 \gt 3.59 \) → 上側棄却域に入る → 帰無仮説を棄却
+            → 差がある → <strong>正解：A</strong>
+            </li>
+        </ol><br>
 
         <section class="python">
         <h2><strong>【pythonでの解説】</strong></h2>
@@ -212,20 +346,123 @@
             p値: 0.0086
         </p><br>
 
-        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <h3><strong>例題3: </strong>母分散の検定（1標本・\( \chi^2 \)検定）</h3>
         <p><strong>コード:</strong></p>
-        <p class="code">from scipy.stats import chi2<br>
-            n = 15<br>
-            s2 = 25<br>
-            df = n - 1<br><br>
-            chi2_lower = chi2.ppf(0.025, df)<br>
-            chi2_upper = chi2.ppf(0.975, df)<br><br>
-            lower = (df * s2) / chi2_upper<br>
-            upper = (df * s2) / chi2_lower<br><br>
-            print(round(lower, 2), round(upper, 2))<br>
+        <p class="code">import scipy.stats as stats<br><br>
+            n = 12<br>
+            s2 = 2.1<br>
+            sigma2_0 = 1.5<br><br>
+            
+            chi2 = (n - 1) * s2 / sigma2_0<br>
+            p_value = 2 * min(<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;stats.chi2.cdf(chi2, df=n-1),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;stats.chi2.sf(chi2, df=n-1)<br>
+            )<br><br>
+            
+            print("カイ二乗値:", round(chi2, 2))<br>
+            print("p値:", round(p_value, 4))
         </p>
-        <p><strong>出力: </strong></p>
-        <p>13.39 62.20</p><br>
+        <p>
+            <strong>出力：</strong><br>
+            カイ二乗値: 15.4<br>
+            p値: 0.1657
+        </p><br>
+
+        <h3><strong>例題4: </strong>母平均の検定（2標本・\( t \) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+            import numpy as np<br>
+            from scipy import stats<br><br>
+        
+            # A社のデータ<br>
+            x1 = 50 # 平均<br>
+            s1 = 5  # 標準偏差<br>
+            n1 = 10 # 標本数<br><br>
+        
+            # B社のデータ<br>
+            x2 = 55<br>
+            s2 = 6<br>
+            n2 = 8<br><br>
+        
+            # プールされた分散<br>
+            sp2 = ((n1 - 1) * s1**2 + (n2 - 1) * s2**2) / (n1 + n2 - 2)<br><br>
+        
+            # 標準誤差<br>
+            se = np.sqrt(sp2 * (1/n1 + 1/n2))<br><br>
+        
+            # t値の計算<br>
+            t_stat = (x1 - x2) / se<br><br>
+        
+            # 自由度<br>
+            df = n1 + n2 - 2<br><br>
+        
+            # 両側検定のp値<br>
+            p_value = 2 * stats.t.sf(np.abs(t_stat), df)<br><br>
+        
+            print("t値:", round(t_stat, 2))<br>
+            print("p値:", round(p_value, 4))
+        </p>
+        
+        <p>
+            <strong>出力：</strong><br>
+            t値: -1.93<br>
+            p値: 0.0703
+        </p><br>
+
+        <h3><strong>例題5: </strong>母比率の検定（2標本・\( z \) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+            import numpy as np<br>
+            from scipy.stats import norm<br><br>
+        
+            n1, x1 = 100, 30<br>
+            n2, x2 = 120, 24<br>
+            p1 = x1 / n1<br>
+            p2 = x2 / n2<br>
+            p_comb = (x1 + x2) / (n1 + n2)<br><br>
+        
+            se = np.sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))<br>
+            z = (p1 - p2) / se<br>
+            p_val = 2 * norm.sf(abs(z))<br><br>
+        
+            print("z値:", round(z, 2))<br>
+            print("p値:", round(p_val, 4))
+        </p>
+        
+        <p>
+            <strong>出力：</strong><br>
+            z値: 1.23<br>
+            p値: 0.2185
+        </p><br>
+
+        <h3><strong>例題6: </strong>母分散の検定（2標本・\( F\) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+            from scipy.stats import f<br><br>
+        
+            s1 = 4; n1 = 10<br>
+            s2 = 2; n2 = 12<br><br>
+        
+            f_stat = (s1**2) / (s2**2)<br>
+            df1 = n1 - 1<br>
+            df2 = n2 - 1<br>
+            p_val = 2 * min(f.cdf(f_stat, df1, df2),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.sf(f_stat, df1, df2))<br><br>
+        
+            print("F値:", round(f_stat, 2))<br>
+            print("p値:", round(p_val, 4))
+        </p>
+        
+        <p>
+            <strong>出力：</strong><br>
+            F値: 4.0<br>
+            p値: 0.0742
+        </p><br>
+
+
+
+
+
 
         </section>
 
@@ -270,19 +507,108 @@
         </p><br>
 
 
-        <h3><strong>例題3: </strong>母分散の区間推定</h3>
+        <h3><strong>例題3: </strong>母分散の検定（1標本・\( \chi^2 \)検定）</h3>
         <p><strong>コード:</strong></p>
-        <p class="code">n <- 15<br>
-            s2 <- 25<br>
-            df <- n - 1<br><br>
-            chi2_lower <- qchisq(0.025, df)<br>
-            chi2_upper <- qchisq(0.975, df)<br><br>
-            lower <- (df * s2) / chi2_upper<br>
-            upper <- (df * s2) / chi2_lower<br>
-            round(c(lower, upper), 2)<br>
+        <p class="code">n <- 12<br>
+            s2 <- 2.1<br>
+            sigma2_0 <- 1.5<br><br>
+            
+            chi2 <- (n - 1) * s2 / sigma2_0<br>
+            p_val <- 2 * min(pchisq(chi2, df = n - 1),<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;pchisq(chi2, df = n - 1, lower.tail = FALSE))<br><br>
+            
+            cat("カイ二乗値:", round(chi2, 2), "\n")<br>
+            cat("p値:", round(p_val, 4), "\n")
         </p>
-        <p><strong>出力: </strong></p>
-        <p>[1] 13.39 62.20</p>
+        <p>
+            <strong>出力結果：</strong><br>
+            カイ二乗値: 15.4<br>
+            p値: 0.1657
+        </p><br>
+
+        <h3><strong>例題4: </strong>母平均の検定（2標本・\( t \) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+            # A社のデータ<br>
+            x1 <- 50  # 平均<br>
+            s1 <- 5   # 標準偏差<br>
+            n1 <- 10  # 標本数<br><br>
+
+            # B社のデータ<br>
+            x2 <- 55<br>
+            s2 <- 6<br>
+            n2 <- 8<br><br>
+        
+            # プールされた分散<br>
+            sp2 <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)<br><br>
+        
+            # 標準誤差<br>
+            se <- sqrt(sp2 * (1/n1 + 1/n2))<br><br>
+        
+            # t値<br>
+            t <- (x1 - x2) / se<br><br>
+        
+            # 自由度<br>
+            df <- n1 + n2 - 2<br><br>
+        
+            # 両側p値<br>
+            p_val <- 2 * pt(abs(t), df=df, lower.tail=FALSE)<br><br>
+        
+            # 出力<br>
+            cat("t値:", round(t, 2), "\n")<br>
+            cat("p値:", round(p_val, 4), "\n")
+        </p>
+        
+        <p>
+            <strong>出力：</strong><br>
+            t値: -1.93<br>
+            p値: 0.0703
+        </p><br>
+
+        <h3><strong>例題5: </strong>母比率の検定（2標本・\( z \) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+        n1 <- 100; x1 <- 30<br>
+        n2 <- 120; x2 <- 24<br>
+        p1 <- x1 / n1<br>
+        p2 <- x2 / n2<br>
+        p_comb <- (x1 + x2) / (n1 + n2)<br><br>
+        
+        se <- sqrt(p_comb * (1 - p_comb) * (1/n1 + 1/n2))<br>
+        z <- (p1 - p2) / se<br>
+        p_val <- 2 * pnorm(abs(z), lower.tail=FALSE)<br><br>
+        
+        cat("z値:", round(z, 2), "\n")<br>
+        cat("p値:", round(p_val, 4), "\n")
+        </p>
+        
+        <p>
+            <strong>出力：</strong><br>
+            z値: 1.23<br>
+            p値: 0.2185
+        </p><br>
+
+        <h3><strong>例題6: </strong>母分散の検定（2標本・\( F\) 検定）</h3>
+        <p><strong>コード:</strong></p>
+        <p class="code">
+        s1 <- 4; n1 <- 10<br>
+        s2 <- 2; n2 <- 12<br><br>
+        
+        f_stat <- (s1^2) / (s2^2)<br>
+        df1 <- n1 - 1<br>
+        df2 <- n2 - 1<br>
+        p_val <- 2 * min(pf(f_stat, df1, df2),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;pf(f_stat, df1, df2, lower.tail = FALSE))<br><br>
+        
+        cat("F値:", round(f_stat, 2), "\n")<br>
+        cat("p値:", round(p_val, 4), "\n")
+        </p>
+        
+        <p>
+            <strong>出力：</strong><br>
+            F値: 4.00<br>
+            p値: 0.0742
+        </p>
     </article>
 </body>
 </html>
